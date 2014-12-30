@@ -1,0 +1,150 @@
+.TH cliaspora 1 "2014" "version 0.1.9" "cliaspora"
+.SH NAME
+.B cliaspora
+\(em A command-line client for DIASPORA*
+.SH SYNOPSIS
+.nf
+\fBcliaspora\fP [\fIoptions\fP] \fBcommand\fP \fIargs ...\fP
+\fBcliaspora\fP \fBsession new\fP \fIhandle\fP [\fIpassword\fP]
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBadd\fP \fBaspect\fP \fIaspect-name\fP \fIpublic\fP|\fIprivate\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBdelete\fP \fIpost-ID\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBfollow\fP \fBtag\fP \fItagname\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBfollow\fP \fBuser\fP \fIhandle\fP \fIaspect\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBlike\fP \fIpost-ID\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBlist\fP \fBcontacts\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBlist\fP \fBmessages\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBlist\fP \fBaspects\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBlookup\fP \fIname\fP|\fIhandle\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBreshare\fP \fIpost-ID\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBsession close\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBshow\fP \fBstream\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBshow\fP \fBactivity\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBshow\fP \fBmystream\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] \fBstatus\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-m\fP [\fB-e\fP]] \fBupload\fP \fIaspect\fP \fIfile ...\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-m\fP [\fB-e\fP]] \fBpoll\fP \fIaspect\fP \fIquestion\fP \fIoption1\fP \fIoption2 ...\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-e\fP] \fBcomment\fP \fIpost-ID\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-e\fP] \fBmessage\fP \fIhandle\fP [\fIsubject\fP]
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-e\fP] \fBpost\fP \fIaspect\fP
+\fBcliaspora\fP [\fB-a\fP \fIaccount\fP] [\fB-e\fP] \fBreply\fP \fImessage-ID\fP
+.fi
+.SH DESCRIPTION
+\fBcliaspora\fP is a command-line client for the distributed social network
+DIASPORA*. Before you can use \fBcliaspora\fP, you have to create a session
+with
+.IP
+cliaspora session new yourusername@yourpod.tld
+.P
+The session stays valid until you create a new session, close the session,
+or it expires. A session usually expires after two weeks.
+.SH OPTIONS
+.TP
+.B -a
+Use the given \fIaccount\fP, where \fIaccount\fP is a DIASPORA handle.
+.TP
+.B -e
+Use the editor defined by the \fIeditor\fP variable in $HOME/.cliasporarc or
+the environment variable EDITOR to compose your message, reply, post,
+upload text, poll text or comment. If the \fB-e\fP option was not specified,
+\fBcliaspora\fP reads input from stdin.
+.TP
+.B -m
+Allows you to post text along with an image upload or a poll. See the
+\fBupload\fP and the \fBpoll\fP command below.
+.SH COMMANDS
+.TP
+.B add aspect
+Adds \fIaspect-name\fP to your aspect list.
+.TP
+.B comment
+Sends a comment to the given \fIpost-ID\fP.
+.TP
+.B delete
+Deletes the post with the given \fIpost-ID\fP.
+.TP
+.B follow user
+Adds the user with the given \fIhandle\fP to the \fIaspect\fP.
+.TP
+.B follow tag
+Adds \fItag-name\fP to your tag list.
+.TP
+.B like
+\(cqLikes\(cq the post with the given \fIpost-ID\fP.
+.TP
+.B list
+Lists your \fBcontacts\fP, the index of your private \fBmessages\fP, or your
+\fBaspects\fP.
+.TP
+.B lookup
+Looks up the \fIhandle\fP or \fIname\fP on DIASPORA*.
+.TP
+.B message
+Sends a private message to the given \fIhandle\fP.
+.TP
+.B post
+Sends a new post to the given \fIaspect\fP. If \fIaspect\fP is \(cqpublic\(cq,
+the post will be visible to everybody.
+.TP
+.B reply
+Sends a reply to the given private \fImessage-ID\fP.
+.TP
+.B reshare
+Reshares the post with the given \fIpost-ID\fP.
+.TP
+.B session new
+Creates a new session.
+.TP
+.B session close
+Closes the current session.
+.TP
+.B show 
+Shows your last few posts (\fBmystream\fP), the last few posts of your main
+stream (\fBstream\fP), or the last few posts of your activity
+stream (\fBactivity\fP). The output is in troff format and intended to be
+piped into \(cqpreconv | groff -Tutf8\(cq.
+.TP
+.B status
+Shows the number of new notifications and new messages.
+.TP
+.B upload
+Uploads one or more image files to the given \fIaspect\fP. If the \fB-m\fP
+option was specified, \fBcliaspora\fP lets you post a text along with the
+images. If the \fB-e\fP option was not specified, \fBcliaspora\fP reads the
+text from stdin.
+.TP
+.B poll
+Starts a poll regarding the given \fIquestion\fP. At least two options people
+can choose from must be defined. If the \fB-m\fP option was specified,
+\fBcliaspora\fP lets you post a text along with the poll. If the \fB-e\fP
+option was not specified, \fBcliaspora\fP reads the text from stdin.
+.SH CONFIG FILE
+\fBcliaspora\fP stores session related information in the configuration file
+$HOME/.cliasporarc, which is a newline separated list of
+variable-value pairs. A variable is separated from its value by an equal
+sign (\(cq=\(cq) and optional TABs or spaces. Values containing white spaces
+must be enclosed in double quotes (\(cq"\(cq). A literal double quote or
+backslash (\(cq\(rs\(cq) must be escaped by preceding it with a \(cq\(rs\(cq.
+Empty lines and lines starting with a hash (\(cq#\(cq) are ignored.
+.P
+For each account there is a block of session related variables. A block is
+introduced by a label (user@pod.tld) followed by a colon \(cq:\(cq and a
+newline. Variables defined before the first block (global variables) apply to
+all accounts, but can be redefined in each account block.
+
+.SS USER SETTABLE VARIABLES
+.TP
+.B editor
+Defines an editor for the \fBcomment\fP, \fBmessage\fP, \fBpost\fP,
+\fBupload\fP and \fBreply\fP command.
+.SH FILES
+.nf
+$HOME/.cliasporarc
+$HOME/.cliaspora.postponed
+.fi
+.SH BUGS
+Searching for certain users or handles using the \fBlookup\fP command fails.
+Creating a new session sometimes fails, albeit the password is correct.
+.SH AUTHOR
+.PD 0
+Marcel Kaiser <mk@nic-nac-project.org>
+
